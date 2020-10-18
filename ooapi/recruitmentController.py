@@ -9,6 +9,8 @@ import cherrypy
 import re, json
 from recruitment_library import _recruitment_database
 
+url='https://services1.arcgis.com/0n2NelSAfR7gTkr1/arcgis/rest/services/SBPD_Recruiting_Ethnicity/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json'
+
 class RecruitmentController(object):
 	def __init__(self, rdb=None):
 		if rdb is None:
@@ -16,14 +18,16 @@ class RecruitmentController(object):
 		else:
 			self.rdb = rdb
 		
-		self.mdb.load_recruitment()
+		self.mdb.load_recruitment_data(url)
 
 	# grabs all types of tests and their information by ethnicity
 	def GET_ETHNICITY(self, eth):
 		output = {'result' : 'success'}
 		
 		try:
-			if:
+			ethnicity_results = self.edb.get_ethnicity(eth)
+
+			if ethnicity_results is not None:
 
 			else:
 				output['result'] = 'error'
