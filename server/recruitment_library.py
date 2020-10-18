@@ -79,6 +79,13 @@ class _recruitment_database:
 	def put_result(self, ethnicity, results):
 		pass
 
+	def post_result(self, ethnicity, test):
+		print('post_result')
+		self.recruitment_data[ethnicity][test] += 1
+	
+	def delete_result(self, ethnicity, test):
+		print('post_result')
+		self.recruitment_data[ethnicity][test] -= 1
 	
 
 
@@ -90,7 +97,8 @@ if __name__ == "__main__":
 	rdb = _recruitment_database()
 
 	rdb.load_recruitment_data(url)
-	print(rdb.get_ethnicity('Asian (Not Hispanic or Latino)'))
-	print(rdb.get_test('Took_Physical_Test'))
-	print(rdb.get_ethnicities())
-	print(rdb.get_tests())
+	# print(rdb.get_ethnicity('Asian (Not Hispanic or Latino)'))
+	# print(rdb.get_test('Took_Physical_Test'))
+	# print(rdb.get_ethnicities())
+	# print(rdb.get_tests())
+	# rdb.post_result('Asian (Not Hispanic or Latino)', 'Took_Physical_Test')
