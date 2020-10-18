@@ -19,12 +19,17 @@ def start_service():
 	# TODO: dispatchers
 	dispatcher.connect('ethnicity_get', '/tests/:ethnicity', controller=recruitmentController, action='GET_KEY', conditions=dict(method=['GET']))
 	dispatcher.connect('test_get', '/ethnicities/:test', controller=recruitmentController, action='GET_KEY', conditions=dict(method=['GET']))
+	dispatcher.connect('tests_get', '/tests/', controller=recruitmentController, action='GET_TESTS', conditions=dict(method=['GET']))
+	dispatcher.connect('ethnicities_get', '/ethnicities/', controller=recruitmentController, action='GET_ETHNICITIES', conditions=dict(method=['GET']))
+	dispatcher.connect('result_put', '/results/:test', controller=recruitmentController, action='PUT_RESULT', conditions=dict(method=['PUT']))
+	dispatcher.connect('result_post', '/results/', controller=recruitmentController, action='POST_RESULT', conditions=dict(method=['POST']))
+	dispatcher.connect('result_delete', '/results/', controller=recruitmentController, action='DELETE_RESULT', conditions=dict(method=['DELETE']))
 	
 
 	conf = {
 			'global': {
 				'server.thread_pool': 5,
-				'server.socket_host': 'student13.cse.nd.edu',
+				'server.socket_host': 'localhost',
 				},
 			'/': {
 				'request.dispatch': dispatcher,

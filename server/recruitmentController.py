@@ -106,6 +106,25 @@ class RecruitmentController(object):
 			output['result'] = 'error'
 			output['message'] = str(ex)
 
-
 	# updates specific test result for a particular ethnicity
+	def PUT_RESULT(self, test):
+		output = {'result' : 'success'}
+
+		data = json.loads(cherrypy.request.body.read().decode('utf-8'))
+
+		tests = list()
+		tests.append(data[''])
+		tests.append(data[''])
+
+		self.rdb.
+
+		return json.dumps(output)
+
+	# increment data for specific ethnicity
+	def POST_RESULT(self):
+		pass
+
+	# delete a candidate's application data
+	def DELETE_RESULT(self):
+		pass
 
