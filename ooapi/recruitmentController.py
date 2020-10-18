@@ -1,20 +1,22 @@
 '''
 Final Project - Web Startup
-SBPDController.py
+RecruitmentController.py
 - JaeYoung Chang (jchang5)
 - Maggie Farrell (mfarre22)
 '''
 
 import cherrypy
 import re, json
-from SBPD_library import _ethnicities_database
+from recruitment_library import _recruitment_database
 
-class SBPDController(object):
-	def __init__(self, edb=None):
-		if edb is None:
-			self.edb = _ethnicities_database()
+class RecruitmentController(object):
+	def __init__(self, rdb=None):
+		if rdb is None:
+			self.rdb = _recruitment_database()
 		else:
-			self.edb = edb
+			self.rdb = rdb
+		
+		self.mdb.load_recruitment()
 
 	# grabs all types of tests and their information by ethnicity
 	def GET_ETHNICITY(self, eth):

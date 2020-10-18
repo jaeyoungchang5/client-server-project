@@ -6,15 +6,18 @@ server.py
 '''
 
 import cherrypy
-from ethnicies_library import _ethnicities_database
+from recruitmentController import RecruitmentController
+from recruitment_library import _recruitment_database
 
 def start_service():
 	dispatcher = cherrypy.dispatch.RoutesDispatcher()
 
-	edb = _ethnicities_database()
+	rdb = _recruitment_database()
 
 	# TODO: declare controllers
+	recruitmentController = RecruitmentController(rdb=rdb)
 	# TODO: dispatchers
+	dispatcher.connect('')
 
 	conf = {
 			'global': {
