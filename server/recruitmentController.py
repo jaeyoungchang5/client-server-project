@@ -17,8 +17,6 @@ class RecruitmentController(object):
 			self.rdb = _recruitment_database()
 		else:
 			self.rdb = rdb
-		
-		self.mdb.load_recruitment_data(url)
 
 		url = 'https://services1.arcgis.com/0n2NelSAfR7gTkr1/arcgis/rest/services/SBPD_Recruiting_Ethnicity/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json'
 		self.rdb.load_recruitment_data(url)
@@ -28,7 +26,7 @@ class RecruitmentController(object):
 		output = {'result' : 'success'}
 		
 		try:
-			ethnicity_results = self.edb.get_ethnicity(eth)
+			ethnicity_results = self.rdb.get_ethnicity(eth)
 
 			if ethnicity_results is not None:
 
@@ -55,7 +53,7 @@ class RecruitmentController(object):
 			result = self.rdb.get_test(test)
 			if result is not None:
 				for ethnicity, value in result.items():
-					output['ethnicity'] = value
+					output[ethnicity] = value
 			else:
 				output['result'] = 'error'
 				output['message'] = 'test not found'
@@ -72,11 +70,41 @@ class RecruitmentController(object):
 
 	# grabs all test data for each ethnicity
 	def GET_TESTS(self):
-		pass
+		output = {'result' : 'success'}
+
+		try:
+			result = self.rdb.get_tests()
+			if result is not None:
+				for ethnicity, val1 in result.items():
+					for test, val2 in result.items():
+						output[ethnicity] = val1
+						output[test] = val2
+			else:
+				output['result'] = 'error'
+				output['message'] = 'tests not found'
+
+		except Exception as ex:
+			output['result'] = 'error'
+			output['message'] = str(ex)
 
 	# grabs all ethnicity data for each test
 	def GET_ETHNICITIES(self):
-		pass	
+		output = {'result' : 'success'}
+
+		try:
+			result = self.rdb.get_ethnicities()
+			if result is not None:
+				for test, val1 in result.items():
+					for ethnicity, val2 in result.items():
+						output[test] = val1
+						output[ethnicity] = val2
+			else:
+				output['result'] = 'error'
+				output['message'] = 'ethnicities not found'
+
+		except Exception as ex:
+			output['result'] = 'error'
+			output['message'] = str(ex)
 
 
 	# updates specific test result for a particular ethnicity
