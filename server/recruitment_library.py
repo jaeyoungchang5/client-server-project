@@ -51,7 +51,7 @@ class _recruitment_database:
 					if test == utest:
 						result[ethnicity]= value
 		except Exception as ex:
-			pass
+			result = None
 		
 		return result
 	
@@ -77,7 +77,19 @@ class _recruitment_database:
 		return result
 
 	def put_result(self, ethnicity, results):
-		pass
+		print('put_result')
+		try:
+			print(self.recruitment_data[ethnicity])
+			for test, value in results.items():
+				if value is True:
+					self.recruitment_data[ethnicity][test] += 1
+				else:
+					self.recruitment_data[ethnicity][test] -= 1
+			
+			print(self.recruitment_data[ethnicity])
+		except Exception as ex:
+			result = None
+
 
 	def post_result(self, ethnicity, test):
 		print('post_result')
@@ -97,8 +109,10 @@ if __name__ == "__main__":
 	rdb = _recruitment_database()
 
 	rdb.load_recruitment_data(url)
-	# print(rdb.get_ethnicity('Asian (Not Hispanic or Latino)'))
-	# print(rdb.get_test('Took_Physical_Test'))
-	# print(rdb.get_ethnicities())
-	# print(rdb.get_tests())
-	# rdb.post_result('Asian (Not Hispanic or Latino)', 'Took_Physical_Test')
+	print(rdb.get_ethnicity('Asian (Not Hispanic or Latino)'))
+	print(rdb.get_test('Took_Physical_Test'))
+	print(rdb.get_ethnicities())
+	print(rdb.get_tests())
+	rdb.post_result('Asian (Not Hispanic or Latino)', 'Took_Physical_Test')
+	rdb.put_result('Asian (Not Hispanic or Latino)', {'Took_Physical_Test': True, 'Passed_Physical_Test': True, 'Completed_Written_Test': False})
+	print(rdb.get_ethnicity('Asian (Not Hispanic or Latino)'))
