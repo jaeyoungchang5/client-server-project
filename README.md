@@ -6,7 +6,7 @@
 
 # The data source for this project comes from the South Bend Data Portal, and focuses on ethnicity data within their police recruiting process.
 
-# The API functions developed for this project are GET_ETHNICITY, GET_TEST, GET_TESTS, GET_ETHNICTIES, PUT_RESULT, POST_RESULT, and DELETE_RESULT. The GET functions are used to make get requests and retrieve various data based on a test or ethnicity. GET_COMPARE also goes through the data and gets all types of tests for two user-specified ethnicities. PUT_RESULT will update a specific test result for a particular ethnicity, while POST_RESULT will increment the respective data for the particular ethnicity. DELETE_RESULT will then delete a specific candidate's entire application data.
+# The API functions developed for this project are GET_ETHNICITY, GET_TEST, GET_TESTS, GET_ETHNICTIES, PUT_RESULT, POST_RESULT, and DELETE_RESULT. The GET functions are used to make get requests and retrieve various data based on a test or ethnicity. PUT_RESULT will update a specific test result for a particular ethnicity, while POST_RESULT will increment the respective data for the particular ethnicity. DELETE_RESULT will then delete a specific candidate's entire application data.
 
 # The full table with JSON specification can be found at this link: https://docs.google.com/document/d/1WCu4kMQ5VM_V39WjOPwB4ynSFCJYEurm2YRx8M5SLmU/edit
 
