@@ -29,9 +29,7 @@ class RecruitmentController(object):
 			ethnicity_results = self.rdb.get_ethnicity(eth)
 
 			if ethnicity_results is not None:
-
-			result = self.rdb.get_ethnicity(eth)
-			if result is not None:
+				result = self.rdb.get_ethnicity(eth)
 				for test, value in result.items():
 					output[test] = value
 			else:
@@ -108,6 +106,8 @@ class RecruitmentController(object):
 
 	# updates specific test result for a particular ethnicity
 	def PUT_RESULT(self, test):
+		pass
+		'''
 		output = {'result' : 'success'}
 
 		data = json.loads(cherrypy.request.body.read().decode('utf-8'))
@@ -119,12 +119,27 @@ class RecruitmentController(object):
 		self.rdb.
 
 		return json.dumps(output)
+		'''
 
 	# increment data for specific ethnicity
-	def POST_RESULT(self):
-		pass
+	def POST_RESULT(self, ethnicity, test):
+		output = {'result' : 'success'}
+		tests = list()
+		data = json.loads(cherrypy.request.body.read())
+
+		try:
+			self.rdb.post_result(ethnicity, test)
+		
+		except Exception as ex:
+			output['result'] = 'error'
+			output['message'] = str(ex)
+
+		return json.dumps(output)
 
 	# delete a candidate's application data
-	def DELETE_RESULT(self):
-		pass
+	def DELETE_RESULT(self, ethnicity, test):
+		output = {'result' : 'success'}
+		self.rdb.delete_result(ethnicity, test)
+
+		return json.dumps(output)
 
