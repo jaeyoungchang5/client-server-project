@@ -12,8 +12,18 @@ class _recruitment_database:
 
 	def __init__(self):
 		self.recruitment_data = dict()
-		# Structure of dict
-		# 
+		'''
+		Structure of dictionary: dictionary of dictionaries
+		{
+			'Ethnicity 1': 
+				{
+					'Test 1': 6, 
+					'Test 2': 7, 
+					...
+				}, 
+			'Ethnicity 2': {...}, ...
+		}
+		'''
 
 	def load_recruitment_data(self, url):
 		print('loading data')
@@ -21,6 +31,10 @@ class _recruitment_database:
 		jsonObj = json.loads(content.content)
 		for element in jsonObj['features']:
 			ethnicity = element['attributes']
+
+			if ethnicity['Ethnicity'] == 'White (Not Hispanic or Latino)':
+				ethnicity['Ethnicity'] = 'White'
+
 			self.recruitment_data[ethnicity['Ethnicity']] = dict()
 			for test, value in ethnicity.items():
 				if test == 'Ethnicity':
@@ -28,10 +42,6 @@ class _recruitment_database:
 
 				self.recruitment_data[ethnicity['Ethnicity']][test] = value
 		print(self.recruitment_data)
-		# for key, value in self.recruitment_data.items():
-		# 	print(key)
-		# 	print(value)
-		# 	print()
 	
 	def get_ethnicity(self, ethnicity):
 		print('get_ethnicity')
@@ -39,7 +49,18 @@ class _recruitment_database:
 			result = self.recruitment_data[ethnicity]
 		except Exception as ex:
 			result = None
+		print(result)
 
+		'''
+		What get_ethnicity returns:
+		- given an ethnicity, it returns the ethnicity's results for each test
+
+		Structure of result:
+		{
+			'Test 1': 9, 
+			'Test 2': 20, ...
+		}
+		'''
 		return result
 	
 	def get_test(self, utest):
@@ -53,6 +74,16 @@ class _recruitment_database:
 		except Exception as ex:
 			result = None
 		
+		'''
+		What get_test returns:
+		- given a test, it returns how every ethnicity scored for the given test
+
+		Structure of result:
+		{
+			'Ethnicity 1': 6,
+			'Ethnicity 2': 8, ...
+		}
+		'''
 		return result
 	
 	def get_ethnicities(self):
@@ -64,6 +95,16 @@ class _recruitment_database:
 		except Exception as ex:
 			result = None
 			
+		'''
+		What get_ethnicities returns:
+		- how much of each ethnicity applied to SBPD
+
+		Structure of result:
+		{
+			'Ethnicity 1': 40,
+			'Ethnicity 2': 80, ...
+		}
+		'''
 		return result
 		
 	
@@ -74,10 +115,22 @@ class _recruitment_database:
 		except Exception as ex:
 			result = None
 
+		'''
+		What get_tests returns:
+		- how many people took/passed each test
+
+		Structure of result:
+		{
+			'Test 1': 1830,
+			'Test 2': 1374, ...
+		}
+		'''
 		return result
 
-	def put_result(self, ethnicity, results):
+	def put_result(self, data):
 		print('put_result')
+		ethnicity = data['Ethnicity']
+		results = data['Tests']
 		try:
 			print(self.recruitment_data[ethnicity])
 			for test, value in results.items():
@@ -85,23 +138,25 @@ class _recruitment_database:
 					self.recruitment_data[ethnicity][test] += 1
 				else:
 					self.recruitment_data[ethnicity][test] -= 1
-			
-			print(self.recruitment_data[ethnicity])
 		except Exception as ex:
 			result = None
 
 
-	def post_result(self, ethnicity, test):
+	def post_result(self, data):
 		print('post_result')
+		ethnicity = data['Ethnicity']
+		test = data['Test']
+		print(f'before: {self.recruitment_data[ethnicity][test]}')
 		self.recruitment_data[ethnicity][test] += 1
+		print(f'after: {self.recruitment_data[ethnicity][test]}')
 	
-	def delete_result(self, ethnicity, test):
+	def delete_result(self, data):
 		print('post_result')
+		ethnicity = data['Ethnicity']
+		test = data['Test']
+		print(f'before: {self.recruitment_data[ethnicity][test]}')
 		self.recruitment_data[ethnicity][test] -= 1
-	
-
-
-
+		print(f'after: {self.recruitment_data[ethnicity][test]}')
 
 if __name__ == "__main__":
 	url = 'https://services1.arcgis.com/0n2NelSAfR7gTkr1/arcgis/rest/services/SBPD_Recruiting_Ethnicity/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json'
@@ -109,10 +164,10 @@ if __name__ == "__main__":
 	rdb = _recruitment_database()
 
 	rdb.load_recruitment_data(url)
-	print(rdb.get_ethnicity('Asian (Not Hispanic or Latino)'))
-	print(rdb.get_test('Took_Physical_Test'))
+	print(rdb.get_ethnicity('White'))
+	print(rdb.get_test('Passed_Physical_Test'))
 	print(rdb.get_ethnicities())
 	print(rdb.get_tests())
-	rdb.post_result('Asian (Not Hispanic or Latino)', 'Took_Physical_Test')
-	rdb.put_result('Asian (Not Hispanic or Latino)', {'Took_Physical_Test': True, 'Passed_Physical_Test': True, 'Completed_Written_Test': False})
-	print(rdb.get_ethnicity('Asian (Not Hispanic or Latino)'))
+	rdb.post_result({'Ethnicity': 'White', 'Test': 'Took_Physical_Test'})
+	rdb.delete_result({'Ethnicity': 'White', 'Test': 'Took_Physical_Test'})
+	rdb.put_result({'Ethnicity': 'White', 'Tests': {'Took_Physical_Test': True, 'Passed_Physical_Test': True, 'Completed_Written_Test': False}})
