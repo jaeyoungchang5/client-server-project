@@ -30,18 +30,17 @@ class _recruitment_database:
 		content = requests.get(url)
 		jsonObj = json.loads(content.content)
 		for element in jsonObj['features']:
-			ethnicity = element['attributes']
+			ethnicity_obj = element['attributes']
+			ethnicity = ethnicity_obj['Ethnicity']
 
-			if ethnicity['Ethnicity'] == 'White (Not Hispanic or Latino)':
-				ethnicity['Ethnicity'] = 'White'
+			ethnicity = shorten_name(ethnicity)
 
-			self.recruitment_data[ethnicity['Ethnicity']] = dict()
-			for test, value in ethnicity.items():
-				if test == 'Ethnicity':
-					continue
+			self.recruitment_data[ethnicity] = dict()
 
-				self.recruitment_data[ethnicity['Ethnicity']][test] = value
-		print(self.recruitment_data)
+			for test, value in list(ethnicity_obj.items())[1:]:
+				self.recruitment_data[ethnicity][test] = value
+
+		# print(self.recruitment_data)
 	
 	def get_ethnicity(self, ethnicity):
 		print('get_ethnicity')
@@ -127,36 +126,57 @@ class _recruitment_database:
 		'''
 		return result
 
-	def put_result(self, data):
+	def put_result(self, ethnicity, tests):
+		print(f'Tests: {tests}')
 		print('put_result')
-		ethnicity = data['Ethnicity']
-		results = data['Tests']
 		try:
-			print(self.recruitment_data[ethnicity])
-			for test, value in results.items():
+			print(f'Before: {self.recruitment_data[ethnicity]}')
+			for test, value in tests.items():
 				if value is True:
 					self.recruitment_data[ethnicity][test] += 1
 				else:
 					self.recruitment_data[ethnicity][test] -= 1
+			print(f'After: {self.recruitment_data[ethnicity]}')
 		except Exception as ex:
 			result = None
 
-
-	def post_result(self, data):
-		print('post_result')
-		ethnicity = data['Ethnicity']
-		test = data['Test']
-		print(f'before: {self.recruitment_data[ethnicity][test]}')
-		self.recruitment_data[ethnicity][test] += 1
-		print(f'after: {self.recruitment_data[ethnicity][test]}')
+	# def post_result(self, data):
+	# 	print('post_result')
+	# 	ethnicity = data['Ethnicity']
+	# 	test = data['Test']
+	# 	print(f'before: {self.recruitment_data[ethnicity][test]}')
+	# 	self.recruitment_data[ethnicity][test] += 1
+	# 	print(f'after: {self.recruitment_data[ethnicity][test]}')
 	
-	def delete_result(self, data):
-		print('post_result')
-		ethnicity = data['Ethnicity']
-		test = data['Test']
-		print(f'before: {self.recruitment_data[ethnicity][test]}')
-		self.recruitment_data[ethnicity][test] -= 1
-		print(f'after: {self.recruitment_data[ethnicity][test]}')
+	# def delete_result(self, data):
+	# 	print('post_result')
+	# 	ethnicity = data['Ethnicity']
+	# 	test = data['Test']
+	# 	print(f'before: {self.recruitment_data[ethnicity][test]}')
+	# 	self.recruitment_data[ethnicity][test] -= 1
+	# 	print(f'after: {self.recruitment_data[ethnicity][test]}')
+
+# Helper function to help simplify / shorten Ethnicity Name
+def shorten_name(ethnicity):
+	if ethnicity == 'American Indian or Alaska Native (Not Hispanic or Latino)':
+		ethnicity = 'American-Indian'
+	elif ethnicity == 'Asian (Not Hispanic or Latino)':
+		ethnicity = 'Asian'
+	elif ethnicity == 'Black or African American (Not Hispanic or Latino)':
+		ethnicity = 'Black'
+	elif ethnicity == 'Hispanic or Latino':
+		ethnicity = 'Latino'
+	elif ethnicity == 'Native Hawaiian or Other Pacific Islander (Not Hispanic or Latino)':
+		ethnicity = 'Hawaiian'
+	elif ethnicity == 'Prefer not to answer':
+		ethnicity = 'NA'
+	elif ethnicity == 'Two or More Races (Not Hispanic or Latino)':
+		ethnicity = 'Multiple'
+	elif ethnicity == 'White (Not Hispanic or Latino)':
+		ethnicity = 'White'
+	elif ethnicity == '(blank)':
+		ethnicity = 'Blank'
+	return ethnicity
 
 if __name__ == "__main__":
 	url = 'https://services1.arcgis.com/0n2NelSAfR7gTkr1/arcgis/rest/services/SBPD_Recruiting_Ethnicity/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json'
@@ -170,4 +190,4 @@ if __name__ == "__main__":
 	print(rdb.get_tests())
 	rdb.post_result({'Ethnicity': 'White', 'Test': 'Took_Physical_Test'})
 	rdb.delete_result({'Ethnicity': 'White', 'Test': 'Took_Physical_Test'})
-	rdb.put_result({'Ethnicity': 'White', 'Tests': {'Took_Physical_Test': True, 'Passed_Physical_Test': True, 'Completed_Written_Test': False}})
+	rdb.put_result('White', {'Took_Physical_Test': True, 'Passed_Physical_Test': True, 'Completed_Written_Test': False})

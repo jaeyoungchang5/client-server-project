@@ -1,6 +1,6 @@
 '''
 Final Project - Web Startup
-RecruitmentController.py
+recruitmentController.py
 - JaeYoung Chang (jchang5)
 - Maggie Farrell (mfarre22)
 '''
@@ -18,18 +18,12 @@ class RecruitmentController(object):
 		else:
 			self.rdb = rdb
 
+		print('loading data')
 		url = 'https://services1.arcgis.com/0n2NelSAfR7gTkr1/arcgis/rest/services/SBPD_Recruiting_Ethnicity/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json'
 		self.rdb.load_recruitment_data(url)
 
 	def RESET_DATA(self):
 		pass
-		# output = {'result': 'success'}
-
-		# data = json.loads(cherrypy.request.body.read().decode())
-
-		# self.__init__()
-
-		# return json.dumps(output)
 
 	# grabs all types of tests and their information by ethnicity
 	def GET_ETHNICITY(self, ethnicity):
@@ -71,10 +65,6 @@ class RecruitmentController(object):
 		print(output)
 		return json.dumps(output)
 
-	# grabs all types of tests for 2 user-specified ethnicities
-	def GET_COMPARE(self, eth1, eth2):
-		pass
-
 	# grabs all test data for each ethnicity
 	def GET_TESTS(self):
 		output = {'result' : 'success'}
@@ -110,38 +100,40 @@ class RecruitmentController(object):
 		return json.dumps(output)
 
 	# updates specific test result for a particular ethnicity
-	def PUT_RESULT(self, data):
+	def PUT_RESULT(self, ethnicity):
 		output = {'result' : 'success'}
 
 		data = json.loads(cherrypy.request.body.read().decode('utf-8'))
 
-		tests = list()
-		tests.append(data[''])
-		tests.append(data[''])
+		tests = dict()
+		for test, value in data.items():
+			tests[test] = value
+
+		self.rdb.put_result(ethnicity, data)
 
 
 		return json.dumps(output)
 	
 
-	# increment data for specific ethnicity
-	def POST_RESULT(self, ethnicity, test):
-		output = {'result' : 'success'}
-		tests = list()
-		data = json.loads(cherrypy.request.body.read())
+	# # increment data for specific ethnicity
+	# def POST_RESULT(self, ethnicity, test):
+	# 	output = {'result' : 'success'}
+	# 	tests = list()
+	# 	data = json.loads(cherrypy.request.body.read())
 
-		try:
-			self.rdb.post_result(ethnicity, test)
+	# 	try:
+	# 		self.rdb.post_result(ethnicity, test)
 		
-		except Exception as ex:
-			output['result'] = 'error'
-			output['message'] = str(ex)
+	# 	except Exception as ex:
+	# 		output['result'] = 'error'
+	# 		output['message'] = str(ex)
 
-		return json.dumps(output)
+	# 	return json.dumps(output)
 
-	# delete a candidate's application data
-	def DELETE_RESULT(self, ethnicity, test):
-		output = {'result' : 'success'}
-		self.rdb.delete_result(ethnicity, test)
+	# # delete a candidate's application data
+	# def DELETE_RESULT(self, ethnicity, test):
+	# 	output = {'result' : 'success'}
+	# 	self.rdb.delete_result(ethnicity, test)
 
-		return json.dumps(output)
+	# 	return json.dumps(output)
 
