@@ -28,8 +28,6 @@ def start_service():
 	dispatcher.connect('ethnicities_get', '/ethnicities/', controller=recruitmentController, action='GET_ETHNICITIES', conditions=dict(method=['GET']))
 
 	dispatcher.connect('result_put', '/results/:ethnicity', controller=recruitmentController, action='PUT_RESULT', conditions=dict(method=['PUT']))
-	# dispatcher.connect('result_post', '/results/', controller=recruitmentController, action='POST_RESULT', conditions=dict(method=['POST']))
-	# dispatcher.connect('result_delete', '/results/', controller=recruitmentController, action='DELETE_RESULT', conditions=dict(method=['DELETE']))
 
 	dispatcher.connect('user_post', '/user/:username', controller=userController, action = 'POST_USER', conditions=dict(method=['POST']))
 	dispatcher.connect('user_delete', '/user/:username', controller=userController, action = 'DELETE_USER', conditions=dict(method=['DELETE']))
@@ -41,7 +39,7 @@ def start_service():
 	conf = {
 			'global': {
 				'server.thread_pool': 5,
-				'server.socket_host': 'localhost',
+				'server.socket_host': 'student13.cse.nd.edu',
 				},
 			'/': {
 				'request.dispatch': dispatcher,

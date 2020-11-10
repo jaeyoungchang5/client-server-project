@@ -9,8 +9,6 @@ import cherrypy
 import re, json
 from recruitment_library import _recruitment_database
 
-#url='https://services1.arcgis.com/0n2NelSAfR7gTkr1/arcgis/rest/services/SBPD_Recruiting_Ethnicity/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json'
-
 class RecruitmentController(object):
 	def __init__(self, rdb=None):
 		if rdb is None:
@@ -113,27 +111,3 @@ class RecruitmentController(object):
 
 
 		return json.dumps(output)
-	
-
-	# # increment data for specific ethnicity
-	# def POST_RESULT(self, ethnicity, test):
-	# 	output = {'result' : 'success'}
-	# 	tests = list()
-	# 	data = json.loads(cherrypy.request.body.read())
-
-	# 	try:
-	# 		self.rdb.post_result(ethnicity, test)
-		
-	# 	except Exception as ex:
-	# 		output['result'] = 'error'
-	# 		output['message'] = str(ex)
-
-	# 	return json.dumps(output)
-
-	# # delete a candidate's application data
-	# def DELETE_RESULT(self, ethnicity, test):
-	# 	output = {'result' : 'success'}
-	# 	self.rdb.delete_result(ethnicity, test)
-
-	# 	return json.dumps(output)
-

@@ -140,22 +140,6 @@ class _recruitment_database:
 		except Exception as ex:
 			result = None
 
-	# def post_result(self, data):
-	# 	print('post_result')
-	# 	ethnicity = data['Ethnicity']
-	# 	test = data['Test']
-	# 	print(f'before: {self.recruitment_data[ethnicity][test]}')
-	# 	self.recruitment_data[ethnicity][test] += 1
-	# 	print(f'after: {self.recruitment_data[ethnicity][test]}')
-	
-	# def delete_result(self, data):
-	# 	print('post_result')
-	# 	ethnicity = data['Ethnicity']
-	# 	test = data['Test']
-	# 	print(f'before: {self.recruitment_data[ethnicity][test]}')
-	# 	self.recruitment_data[ethnicity][test] -= 1
-	# 	print(f'after: {self.recruitment_data[ethnicity][test]}')
-
 # Helper function to help simplify / shorten Ethnicity Name
 def shorten_name(ethnicity):
 	if ethnicity == 'American Indian or Alaska Native (Not Hispanic or Latino)':
