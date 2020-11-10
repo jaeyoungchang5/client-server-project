@@ -17,13 +17,16 @@ class optionsController:
 		return ""
 
 def CORS():
-	cherrypy.response.headers["Access-Control-Allow-Origin"] = "*"
-	cherrypy.response.headers["Access-Control-Allow-Methods"] = "GET, PUT, POST, DELETE, OPTIONS"
-	cherrypy.response.headers["Access-Control-Allow-Credentials"] = "true"
-
+        print('CORS config')
+        cherrypy.response.headers["Access-Control-Allow-Origin"] = "*"
+        cherrypy.response.headers["Access-Control-Allow-Methods"] = "GET, PUT, POST, DELETE, OPTIONS"
+        cherrypy.response.headers["Access-Control-Allow-Credentials"] = "true"
+        
 
 def start_service():
+
 	dispatcher = cherrypy.dispatch.RoutesDispatcher()
+	print('STARTING SERVICE')
 
 	rdb = _recruitment_database()
 	udb = _user_database()
@@ -79,5 +82,7 @@ def start_service():
 # end of start_service
 
 if __name__ == '__main__':
+	print('main - before cors')
 	cherrypy.tools.CORS = cherrypy.Tool('before_finalize', CORS)
+	print('main - after cors')
 	start_service()
