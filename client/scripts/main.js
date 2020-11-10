@@ -15,10 +15,13 @@ function handleRequest(hostUrl, portNumber, requestType, ethnicity) {
     console.log("handling request");
 
     var xhr = new XMLHttpRequest();
+    console.log("created XMLHttpRequest");
     
     xhr.open(requestType, hostUrl + ":" + portNumber + "/tests/" + ethnicity, true);
+    console.log("opened xhr");
 
     xhr.onload = function(e){
+        console.log("entered onload");
         console.log(xhr.responseText);
         if(requestType == 'GET'){
             console.log("update page for get")
