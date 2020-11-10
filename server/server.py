@@ -64,6 +64,7 @@ def start_service():
 			'global': {
 				'server.thread_pool': 5,
 				'server.socket_host': 'student13.cse.nd.edu',
+				'server.socket_port': 5147,
 				},
 			'/': {
 				'request.dispatch': dispatcher,
