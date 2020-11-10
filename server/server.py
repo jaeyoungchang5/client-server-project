@@ -10,6 +10,7 @@ from recruitmentController import RecruitmentController
 from recruitment_library import _recruitment_database
 from userController import UserController
 from user_library import _user_database
+from resetController import ResetController
 
 def start_service():
 	dispatcher = cherrypy.dispatch.RoutesDispatcher()
@@ -20,6 +21,7 @@ def start_service():
 	# TODO: declare controllers
 	recruitmentController = RecruitmentController(rdb=rdb)
 	userController = UserController(udb=udb)
+	resetController = ResetController(rdb=rdb)
 	# TODO: dispatchers
 	dispatcher.connect('ethnicity_get', '/tests/:ethnicity', controller=recruitmentController, action='GET_ETHNICITY', conditions=dict(method=['GET']))
 	dispatcher.connect('test_get', '/ethnicities/:test', controller=recruitmentController, action='GET_TEST', conditions=dict(method=['GET']))
@@ -34,7 +36,7 @@ def start_service():
 	dispatcher.connect('user_get_all', '/user/all/', controller=userController, action = 'GET_USERS', conditions=dict(method=['GET']))
 	
 
-	dispatcher.connect('reset', '/reset/', controller=recruitmentController, action='RESET_DATA', conditions=dict(method=['PUT']))
+	dispatcher.connect('reset_data', '/reset/', controller=resetController, action='RESET_DATA', conditions=dict(method=['PUT']))
 
 	conf = {
 			'global': {

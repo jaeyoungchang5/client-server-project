@@ -28,7 +28,8 @@ class TestAPI(unittest.TestCase):
 			return False
 	
 	def reset_data(self):
-		r = requests.put(self.RESET_URL)
+		data = {}
+		r = requests.put(self.RESET_URL, data = json.dumps(data))
 
 	def test_get_ethnicity(self):
 		self.reset_data()
@@ -121,6 +122,31 @@ class TestAPI(unittest.TestCase):
 		self.assertEqual(resp['Passed_Interview'], 51)
 		self.assertEqual(resp['Passed_Background'], 40)
 		self.assertEqual(resp['Passed_Polygraph__Medical__Psyc'], 26)
+	
+	def test_reset_data(self):
+		self.reset_data()
+		ethnicity = 'White'
+		tests = {'Took_Physical_Test': True, 'Passed_Physical_Test': True, 'Completed_Written_Test': False}
+
+		r = requests.put(self.RESULT_URL + ethnicity, data = json.dumps(tests))
+		self.assertTrue(self.is_json(r.content.decode('utf-8')))
+		resp = json.loads(r.content.decode('utf-8'))
+		self.assertEqual(resp['result'], 'success')
+
+		self.reset_data()
+		r = requests.get(self.TEST_URL + ethnicity)
+		self.assertTrue(self.is_json(r.content.decode('utf-8')))
+		resp = json.loads(r.content.decode('utf-8'))
+
+		self.assertEqual(resp['Submitted_Application'], 818)
+		self.assertEqual(resp['Took_Physical_Test'], 181)
+		self.assertEqual(resp['Passed_Physical_Test'], 154)
+		self.assertEqual(resp['Completed_Written_Test'], 126)
+		self.assertEqual(resp['Passed_Written_Test'], 106)
+		self.assertEqual(resp['Completed_Interview'], 76)
+		self.assertEqual(resp['Passed_Interview'], 51)
+		self.assertEqual(resp['Passed_Background'], 40)
+		self.assertEqual(resp['Passed_Polygraph__Medical__Psyc'], 26)
 
 	def test_post_user(self):
 		username1 = 'user1'
@@ -197,36 +223,7 @@ class TestAPI(unittest.TestCase):
 		self.assertEqual(resp['user2'], {'fname': 'fname2', 'lname': 'lname2', 'password': 'password2', 'email': 'email2@test.com'})
 
 
-	# def test_post_result(self):
-	# 	d = {}
-	# 	d['test'] = 'Passed_Physical_Test'
-	# 	d['ethnicity'] = 'White (Not Latino)'
-
-	# 	r = requests.post(self.RESULT_URL, data = json.dumps(d))
-	# 	self.assertTrue(self.is_json(r.content.decode()))
-	# 	resp = json.loads(r.content.decode())
-	# 	self.assertEqual(resp['result'], 'success')
-	# 	self.assertEqual(resp[''], )
-
-	# 	r = requests.get(self.TEST_URL + str(resp['']))
-	# 	self.assertTrue(self.is_json(r.content.decode()))
-	# 	resp = json.loads(r.content.decode())
-	# 	self.assertEqual(resp['test'], d['test'])
-	# 	self.assertEqual(resp['ethnicity'], d['ethnicity'])
-
-	# def test_delete_result(self):
-	# 	d = {}
-		
-	# 	r = requests.delete(self.TEST_URL, data = json.dumps(d))
-	# 	self.assertTrue(self.is_json(r.content.decode()))
-	# 	resp = json.loads(r.content.decode())
-	# 	self.assertEqual(resp['result'], 'success')
-
-	# 	r = requests.get(self.TEST_URL)
-	# 	self.assertTrue(self.is_json(r.content.decode()))
-	# 	resp = json.loads(r.content.decode())
-	# 	dic = resp['candidates']
-	# 	self.assertFalse(dic)
+	
 
 
 if __name__ == "__main__":

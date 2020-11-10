@@ -16,12 +16,9 @@ class RecruitmentController(object):
 		else:
 			self.rdb = rdb
 
-		print('loading data')
+		print('controller load data')
 		url = 'https://services1.arcgis.com/0n2NelSAfR7gTkr1/arcgis/rest/services/SBPD_Recruiting_Ethnicity/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json'
 		self.rdb.load_recruitment_data(url)
-
-	def RESET_DATA(self):
-		pass
 
 	# grabs all types of tests and their information by ethnicity
 	def GET_ETHNICITY(self, ethnicity):
