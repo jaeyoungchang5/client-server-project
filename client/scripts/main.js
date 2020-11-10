@@ -3,7 +3,7 @@ console.log("entered script");
 var hostUrl = "http://student13.cse.nd.edu";
 var portNumber = 8080;
 var requestType = 'GET';
-var ethnicity = document.getElementById('ethnicity-options').value;
+var ethnicity = "White"; //document.getElementById('ethnicity-options').value;
 makeNetworkCalltoServer(hostUrl, portNumber, requestType, ethnicity);
 
 function makeNetworkCalltoServer(hostUrl, portNumber, requestType, ethnicity) {
