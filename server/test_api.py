@@ -12,7 +12,7 @@ import json
 
 class TestAPI(unittest.TestCase):
 
-	SITE_URL = 'http://student13.cse.nd.edu:51047'
+	SITE_URL = 'http://student04.cse.nd.edu:51047'
 	print("testing for server: " + SITE_URL)
 	ETHNICITIES_URL = SITE_URL + '/ethnicities/'
 	TEST_URL = SITE_URL + '/tests/'

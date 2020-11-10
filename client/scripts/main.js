@@ -1,18 +1,20 @@
 console.log("entered script");
 
-var hostUrl = "http://student13.cse.nd.edu";
+var hostUrl = "http://student04.cse.nd.edu";
 var portNumber = 51047;
 var requestType = "GET";
 var ethnicity = "White"; //document.getElementById('ethnicity-options').value;
 
 var xhr = new XMLHttpRequest();
-xhr.open("GET", "http://student13.cse.nd.edu:51047/tests/White", true);
+xhr.open("GET", "http://student04.cse.nd.edu:51047/tests/", true);
 
 xhr.onload = function(e){
+    console.log("loading");
     console.log(xhr.responseText);
 }
 
 xhr.onerror = function(e){
+    console.log("error");
     console.error(xhr.statusText);
 }
 
