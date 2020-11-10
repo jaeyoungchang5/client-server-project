@@ -28,6 +28,14 @@ function handleRequest(hostUrl, portNumber, requestType, ethnicity) {
             updatePageForGet(xhr.responseText);
         }
     }
+
+    xhr.onerror = function(e){
+        document.getElementById('physical-passed').innerHTML = "An error occurred - revise your request.";
+        console.error(xhr.statusText);
+    }
+
+    xhr.send(null);
+
 }
 
 function updatePageForGet(response_text){
