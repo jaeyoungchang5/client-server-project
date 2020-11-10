@@ -30,6 +30,7 @@ function handleRequest(hostUrl, portNumber, requestType, ethnicity) {
     }
 
     xhr.onerror = function(e){
+        console.log("enter onerror");
         document.getElementById('physical-passed').innerHTML = "An error occurred - revise your request.";
         console.error(xhr.statusText);
     }
