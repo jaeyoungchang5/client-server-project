@@ -57,5 +57,8 @@ function updatePageForGet(response_text){
     document.getElementById('personal-passed').innerHTML = response_json['Passed_Personal'];
     document.getElementById('interview-passed').innerHTML = response_json['Passed_Interview'];
     document.getElementById('polygraph-passed').innerHTML = response_json['Passed_Polygraph__Medical__Psyc'];
+
+    console.log(response_json['Passed_Written_Test']);
+    console.log(response_json['Passed_Interview']);
 }
 
