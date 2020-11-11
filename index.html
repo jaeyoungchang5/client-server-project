@@ -48,131 +48,82 @@
     <div id="wrapper" class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h2>Who Passed The Tests?</h2>
+                <h1>General Ethnicity Data</h1>
+                <p><i>Find out how all ethnicities perform on a given test</i></p>
                 <hr>
-
-                <!-- TABLE 1 -->
-                <h4>Percentage by Test</h4>
-                <select name="ethnicity-options" id="ethnicity-options">
-                    <option disabled="true">Select an Ethnicity</option>
-                    <option value="American-Indian">American Indian</option>
-                    <option value="Asian">Asian</option>
-                    <option value="Black">Black</option>
-                    <option value="Latino">Hispanic or Latino</option>
-                    <option value="Hawaiian">Native Hawaiian</option>
-                    <option value="Multiple">Two or More Races</option>
-                    <option value="White">White</option>
-                </select>
-                <button type="submit" class="btn btn-primary btn-sm" id="test-table-button">Update Table</button>
-                <br><br>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th style="width:20%;">Type of Test</th>
-                            <th style="width:20%;">% Passed</th>
-                            <th style="width:60%;"># of Applicants</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Physical</td>
-                            <td id="physical-passed">-</td>
-                            <td id="physical-applicants">-</td>
-                        </tr>
-                        <tr>
-                            <td>Written</td>
-                            <td id="written-passed">-</td>
-                            <td id="written-applicants">-</td>
-                        </tr>
-                        <tr>
-                            <td>Personal</td>
-                            <td id="personal-passed">-</td>
-                            <td id="personal-applicants">-</td>
-                        </tr>
-                        <tr>
-                            <td>Interview</td>
-                            <td id="interview-passed">-</td>
-                            <td id="interview-applicants">-</td>
-                        </tr>
-                        <tr>
-                            <td>Polygraph</td>
-                            <td id="polygraph-passed">-</td>
-                            <td id="polygraph-applicants">-</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br><hr><br>
-                <!-- <iframe width="450" height="400" frameborder="0" scrolling="no" src="//plotly.com/~mfarre22/1.embed"></iframe> -->
-
                 <!-- TABLE 2 -->
-                <h4>Percentage by Ethnicity</h4>
+                <h4>Number of Applicants That Passed A Given Test</h4>
                 <select name="test-options" id="test-options">
                     <option disabled="true">Select a Test</option>
                     <option value="Passed_Physical_Test">Physical</option>
                     <option value="Passed_Written_Test">Written</option>
                     <option value="Passed_Personal">Personal</option>
                     <option value="Passed_Interview">Interview</option>
-                    <option value="Passed_Polygraph__Medical__Psyc">Polygraph</option>
+                    <option value="Passed_Polygraph__Medical__Psyc">Hired</option>
                 </select>
                 <button type="submit" class="btn btn-primary btn-sm" id="ethnicity-table-button">Update Table</button>
                 <br><br>
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th style="width:20%;">Ethnicity</th>
-                            <th style="width:20%;">% Passed</th>
-                            <th style="width:60%;"># of Applicants</th>
+                            <th style="width:30%;">Ethnicity</th>
+                            <th style="width:30%;"># of Applicants Who Passed</th>
+                            <th style="width:40%;">Total # of Applicants Who Applied</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>American Indian</td>
                             <td id="ai-passed">-</td>
-                            <td id="ai-applicants">-</td>
+                            <td id="ai-total-applicants">-</td>
                         </tr>
                         <tr>
                             <td>Asian</td>
                             <td id="a-passed">-</td>
-                            <td id="a-applicants">-</td>
+                            <td id="a-total-applicants">-</td>
                         </tr>
                         <tr>
                             <td>Black</td>
                             <td id="b-passed">-</td>
-                            <td id="b-applicants">-</td>
+                            <td id="b-total-applicants">-</td>
                         </tr>
                         <tr>
                             <td>Hispanic or Latino</td>
                             <td id="hl-passed">-</td>
-                            <td id="hl-applicants">-</td>
+                            <td id="hl-total-applicants">-</td>
                         </tr>
                         <tr>
                             <td>Native Hawaiian</td>
                             <td id="nh-passed">-</td>
-                            <td id="nh-applicants">-</td>
+                            <td id="nh-total-applicants">-</td>
                         </tr>
                         <tr>
                             <td>Two or More Races</td>
                             <td id="two-passed">-</td>
-                            <td id="two-applicants">-</td>
+                            <td id="two-total-applicants">-</td>
                         </tr>
                         <tr>
                             <td>White</td>
                             <td id="w-passed">-</td>
-                            <td id="w-applicants">-</td>
+                            <td id="w-total-applicants">-</td>
                         </tr>
                     </tbody>
                 </table>
                 <br><hr><br>
-                <!-- <iframe width="450" height="400" frameborder="0" scrolling="no" src="//plotly.com/~mfarre22/3.embed"></iframe> -->
                 
+
+                <h1>So You Want To Be A SBPD Officer?</h1>
+                <p><i>Find out how likely you are to pass the various recruitment tests</i></p>
+                <hr>
+
                 <!-- TABLE 3 -->
-                <h4>Percentage Passing the Tests</h4>
+                <h4>Percentage Passed For All Ethnicities</h4>
                 <table class='table table-striped'>
                     <thead>
                         <tr>
-                            <th style='width: 20%;'>Type of Test</th>
-                            <th style='width: 20%;'>% Passed</th>
-                            <th style='width: 60%;'># of Applicants</th>
+                            <th style='width: 30%;'>Type of Test</th>
+                            <th style='width: 30%;'>% Passed</th>
+                            <th style='width: 40%;'># of Applicants</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -197,7 +148,7 @@
                             <td id="p-interview-applicants" >-</td>
                         </tr>
                         <tr>
-                            <td>Polygraph</td>
+                            <td>Hired</td>
                             <td id="p-polygraph" >-</td>
                             <td id="p-polygraph-applicants" >-</td>
                         </tr>
@@ -205,14 +156,70 @@
                 </table>
                 <!-- <button type="submit" class="btn btn-primary" id="total-test-table-button">Update Table</button> -->
                 <br><hr><br>
+
+                <!-- TABLE 1 -->
+                <h4>Percentage Passed For A Given Ethnicity</h4>
+                <select name="ethnicity-options" id="ethnicity-options">
+                    <option disabled="true">Select an Ethnicity</option>
+                    <option value="American-Indian">American Indian</option>
+                    <option value="Asian">Asian</option>
+                    <option value="Black">Black</option>
+                    <option value="Latino">Hispanic or Latino</option>
+                    <option value="Hawaiian">Native Hawaiian</option>
+                    <option value="Multiple">Two or More Races</option>
+                    <option value="White">White</option>
+                </select>
+                <button type="submit" class="btn btn-primary btn-sm" id="test-table-button">Update Table</button>
+                <br><br>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width:30%;">Type of Test</th>
+                            <th style="width:30%;">% Passed The Test</th>
+                            <th style="width:40%;"># of Applicants Who Took The Test</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Physical</td>
+                            <td id="physical-passed">-</td>
+                            <td id="physical-applicants">-</td>
+                        </tr>
+                        <tr>
+                            <td>Written</td>
+                            <td id="written-passed">-</td>
+                            <td id="written-applicants">-</td>
+                        </tr>
+                        <tr>
+                            <td>Personal</td>
+                            <td id="personal-passed">-</td>
+                            <td id="personal-applicants">-</td>
+                        </tr>
+                        <tr>
+                            <td>Interview</td>
+                            <td id="interview-passed">-</td>
+                            <td id="interview-applicants">-</td>
+                        </tr>
+                        <tr>
+                            <td>Hired</td>
+                            <td id="polygraph-passed">-</td>
+                            <td id="polygraph-applicants">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br><hr><br>
+                <!-- <iframe width="450" height="400" frameborder="0" scrolling="no" src="//plotly.com/~mfarre22/1.embed"></iframe> -->
+                <!-- <iframe width="450" height="400" frameborder="0" scrolling="no" src="//plotly.com/~mfarre22/3.embed"></iframe> -->
+                
+                
                 <!-- TABLE 4 -->
-                <h4>Number of Applicants by Ethnicity</h4>
+                <!-- <h4>Number of Applicants by Ethnicity</h4>
                 <table class='table table-striped'>
                     <thead>
                         <tr>
-                            <th style='width: 20%;'>Ethnicity</th>
-                            <th style='width: 20%;'># of Applicants</th>
-                            <th style='width: 60%;'> </th>
+                            <th style='width: 30%;'>Ethnicity</th>
+                            <th style='width: 30%;'># of Applicants</th>
+                            <th style='width: 40%;'> </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -252,7 +259,7 @@
                             <td></td>
                         </tr>
                     </tbody>
-                </table>
+                </table> -->
                 <!-- <button type="submit" class="btn btn-primary" id="ethnicity-applicants-button">Update Table</button> -->
             </div>
         </div>
