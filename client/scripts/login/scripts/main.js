@@ -45,6 +45,7 @@ function getFormInfo(requestType) {
 
 function makeNetworkCalltoServer(hostUrl, portNumber, requestType, endpoint, data) {
     console.log("made network call to server");
+    console.log("endpoint: " + endpoint);
     handleRequest(hostUrl, portNumber, requestType, endpoint, data);
 }
 
