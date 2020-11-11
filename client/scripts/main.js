@@ -10,6 +10,7 @@ var ethnicityTableButton = document.getElementById('ethnicity-table-button');
 ethnicityTableButton.onmouseup = getFormInfo;
 
 function getFormInfo() {
+    ethnicity = document.getElementById('ethnicity-options').value;
     makeNetworkCalltoServer(hostUrl, portNumber, requestType, ethnicity);
 }
 
