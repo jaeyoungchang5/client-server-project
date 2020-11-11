@@ -66,7 +66,6 @@ function handleRequest(hostUrl, portNumber, requestType, endpoint, tableNum) {
 
     xhr.onerror = function(e){
         console.log("enter onerror");
-        document.getElementById('physical-passed').innerHTML = "An error occurred - revise your request.";
         console.error(xhr.statusText);
     }
 
