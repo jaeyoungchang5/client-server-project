@@ -53,5 +53,6 @@ function updatePageForGet(response_text){
     console.log(response_json);
 
     document.getElementById('physical-passed').innerHTML = response_json['Passed_Physical_Test'];
+    console.log(response_json['Passed_Physical_Test']);
 }
 
