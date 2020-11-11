@@ -4,8 +4,14 @@ var hostUrl = "http://student04.cse.nd.edu";
 var portNumber = 51047;
 var requestType = "GET";
 var ethnicity = document.getElementById('ethnicity-options').value;
+var testTableButton = document.getElementById('test-table-button');
+testTableButton.onmouseup = getFormInfo;
+var ethnicityTableButton = document.getElementById('ethnicity-table-button');
+ethnicityTableButton.onmouseup = getFormInfo;
 
-makeNetworkCalltoServer(hostUrl, portNumber, requestType, ethnicity);
+function getFormInfo() {
+    makeNetworkCalltoServer(hostUrl, portNumber, requestType, ethnicity);
+}
 
 function makeNetworkCalltoServer(hostUrl, portNumber, requestType, ethnicity) {
     console.log("make network call to server");
