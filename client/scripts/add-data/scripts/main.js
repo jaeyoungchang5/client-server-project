@@ -1,6 +1,6 @@
 console.log("Page loaded");
 
-var submitButton = document.getElementById('submit-button')
+var submitButton = document.getElementById('add-data-button')
 submitButton.onmouseup = getFormInfo;
 
 function getFormInfo(){
