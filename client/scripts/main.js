@@ -24,7 +24,7 @@ function handleRequest(hostUrl, portNumber, requestType, ethnicity) {
     var xhr = new XMLHttpRequest();
     console.log("created XMLHttpRequest");
     
-    xhr.open(requestType, hostUrl + ":" + portNumber + "/tests/Black", true);
+    xhr.open(requestType, hostUrl + ":" + portNumber + "/tests/" + ethnicity, true);
     //xhr.open(requestType, hostUrl + ":" + portNumber + "/tests/" + ethnicity, true);
     console.log("opened xhr");
 
