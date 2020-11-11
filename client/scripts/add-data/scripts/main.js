@@ -55,6 +55,7 @@ function getFormInfo(){
     // get tests passed
     var passed = [];
     if (document.getElementById('physical-pass').checked){
+        console.log(document.getElementById("physical-pass").value)
         passed.push(document.getElementById("physical-pass").value);
     }
 
