@@ -3,28 +3,36 @@ console.log("entered script");
 var hostUrl = "http://student04.cse.nd.edu";
 var portNumber = 51047;
 var requestType = "GET";
+
+// Table 1: Test ('/tests/:ethnicity')
 var testTableButton = document.getElementById('test-table-button');
-testTableButton.onmouseup = getFormInfo;
+testTableButton.onmouseup = function(){
+    console.log('TABLE 1: button clicked');
+    var endpoint = '/tests/' + document.getElementById('ethnicity-options').value;
+    getTestInfo(endpoint)
+};
+
+// Table 2: Ethnicity ('/ethnicities/:test')
 var ethnicityTableButton = document.getElementById('ethnicity-table-button');
 ethnicityTableButton.onmouseup = getFormInfo;
 
-function getFormInfo() {
-    var ethnicity = document.getElementById('ethnicity-options').value;
-    makeNetworkCalltoServer(hostUrl, portNumber, requestType, ethnicity);
+function getTestInfo(endpoint) {
+    console.log('getting info for endpoint: ' + endpoint);
+    makeNetworkCalltoServer(hostUrl, portNumber, requestType, endpoint);
 }
 
-function makeNetworkCalltoServer(hostUrl, portNumber, requestType, ethnicity) {
-    console.log("make network call to server");
-    handleRequest(hostUrl, portNumber, requestType, ethnicity);
+function makeNetworkCalltoServer(hostUrl, portNumber, requestType, endpoint) {
+    console.log("made network call to server");
+    handleRequest(hostUrl, portNumber, requestType, endpoint);
 }
 
-function handleRequest(hostUrl, portNumber, requestType, ethnicity) {
+function handleRequest(hostUrl, portNumber, requestType, endpoint) {
     console.log("handling request");
 
     var xhr = new XMLHttpRequest();
     console.log("created XMLHttpRequest");
     
-    xhr.open(requestType, hostUrl + ":" + portNumber + "/tests/" + ethnicity, true);
+    xhr.open(requestType, hostUrl + ":" + portNumber + endpoint, true);
     console.log("opened xhr");
 
     xhr.onload = function(e){
