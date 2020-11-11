@@ -52,6 +52,6 @@ function updatePageForGet(response_text){
     var response_json = JSON.parse(response_text);
     console.log(response_json);
 
-    document.getElementById('physical-passed').innerHTML = "Result: " + response_json['result'] + "\n Ethnicity: " + response_json['ethnicity'] + "\n Test: " + response_json['test'];
+    document.getElementById('physical-passed').innerHTML = response_json['Passed_Physical_Test'];
 }
 
