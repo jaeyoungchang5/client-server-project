@@ -74,17 +74,25 @@ function handleRequest(hostUrl, portNumber, requestType, endpoint, tableNum) {
 
 }
 
+function percentage(top, bottom) {
+    if (bottom == 0){
+        return "0%";
+    }
+
+    return ((top/bottom)*100).toFixed(1) + "%";
+}
+
 function updateTable1(response_text){
     console.log('updating page for get');
 
     var response_json = JSON.parse(response_text);
     console.log('response: ' + response_json);
 
-    document.getElementById('physical-passed').innerHTML = ((response_json['Passed_Physical_Test']/response_json['Took_Physical_Test'])*100).toFixed(1);
-    document.getElementById('written-passed').innerHTML = ((response_json['Passed_Written_Test']/response_json['Completed_Written_Test'])*100).toFixed(1);
-    document.getElementById('personal-passed').innerHTML = ((response_json['Passed_Personal']/response_json['Completed_Personal'])*100).toFixed(1);
-    document.getElementById('interview-passed').innerHTML = ((response_json['Passed_Interview']/response_json['Completed_Interview'])*100).toFixed(1);
-    document.getElementById('polygraph-passed').innerHTML = ((response_json['Passed_Polygraph__Medical__Psyc']/response_json['Submitted_Application'])*100).toFixed(1);
+    document.getElementById('physical-passed').innerHTML = percentage(response_json['Passed_Physical_Test'], response_json['Took_Physical_Test']);
+    document.getElementById('written-passed').innerHTML = percentage(response_json['Passed_Written_Test'], response_json['Completed_Written_Test']);
+    document.getElementById('personal-passed').innerHTML = percentage(response_json['Passed_Personal'], response_json['Completed_Personal']);
+    document.getElementById('interview-passed').innerHTML = percentage(response_json['Passed_Interview'], response_json['Completed_Interview']);
+    document.getElementById('polygraph-passed').innerHTML = percentage(response_json['Passed_Polygraph__Medical__Psyc'], response_json['Submitted_Application']);
 
     document.getElementById('physical-applicants').innerHTML = response_json['Took_Physical_Test'];
     document.getElementById('written-applicants').innerHTML = response_json['Completed_Written_Test'];
