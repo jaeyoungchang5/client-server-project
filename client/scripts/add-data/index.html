@@ -23,14 +23,14 @@
             <div class="navbar-header"><button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1" aria-expanded="false"><span class="sr-only">Toggle
                         navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
-                        class="icon-bar"></span></button><a class="navbar-brand" href="/">Police
+                        class="icon-bar"></span></button><a class="navbar-brand" href="/client-server-project/">Police
                     Recruiting Data</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/client/scripts/about-us">About Us</a></li>
-                    <li><a href="/client/scripts/add-data">Add Your Data</a></li>
-                    <li><a href="/client/scripts/login">Log in</a></li>
+                    <li><a href="/client-server-project/client/scripts/about-us">About Us</a></li>
+                    <li><a href="/client-server-project/client/scripts/add-data">Add Your Data</a></li>
+                    <li><a href="/client-server-project/client/scripts/login">Log in</a></li>
                 </ul>
             </div>
         </div>
@@ -47,7 +47,7 @@
 
             <div class='jumbotron' style='background:#6aa84f'>
                 <h1 style='color:#000000;' class='jumbotronic'>Add Your Data</h1>
-                <h6 style='color:#000000'></h6>
+                <h6 style='color:#000000;'></h6>
             </div>
 
             <form class='bsr-form ' action=''>
@@ -66,12 +66,18 @@
                     <div class='radio'><label><input type='radio' name='hired-option' id='no' value='No'>No</label></div>
                 </div>
 
+                <div class='form-group'><label for='checkboxes'>Which tests did you take?</label>
+                    <div class='checkbox' id='physical-take'><label><input type='checkbox' value='Physical'>Physical</label></div>
+                    <div class='checkbox' id='written-take'><label><input type='checkbox' value='Written'>Written</label></div>
+                    <div class='checkbox' id='personal-take'><label><input type='checkbox' value='Personal'>Personal</label></div>
+                    <div class='checkbox' id='interview-take'><label><input type='checkbox' value='Interview'>Interview</label></div>
+                </div>
+
                 <div class='form-group'><label for='checkboxes'>Which tests did you pass?</label>
-                    <div class='checkbox' id='physical'><label><input type='checkbox' value='Physical'>Physical</label></div>
-                    <div class='checkbox' id='written'><label><input type='checkbox' value='Written'>Written</label></div>
-                    <div class='checkbox' id='personal'><label><input type='checkbox' value='Personal'>Personal</label></div>
-                    <div class='checkbox' id='interview'><label><input type='checkbox' value='Interview'>Interview</label></div>
-                    <div class='checkbox' id='polygraph'><label><input type='checkbox' value='Polygraph'>Polygraph</label></div>
+                    <div class='checkbox' id='physical-pass'><label><input type='checkbox' value='Physical'>Physical</label></div>
+                    <div class='checkbox' id='written-pass'><label><input type='checkbox' value='Written'>Written</label></div>
+                    <div class='checkbox' id='personal-pass'><label><input type='checkbox' value='Personal'>Personal</label></div>
+                    <div class='checkbox' id='interview-pass'><label><input type='checkbox' value='Interview'>Interview</label></div>
                 </div>
             </form>
             
