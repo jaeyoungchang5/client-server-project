@@ -80,6 +80,7 @@ function getFormInfo(){
     data['submitted'] = submitted;
     data['tests'] = tests;
 
+    console.log("DATA TO BE ADDED:" + data)
     displayData(data);
 }
 
