@@ -19,3 +19,6 @@ The full table with JSON specification can be found at this link: https://docs.g
 ## Testing
 The test file for this project can be executed by running the command 'python3 test_api.py'.
 
+## Complexity
+The project consists of 1 server, 2 libraries (one for retrieving recruitment data and one for user account information), 3 controllers (one for each library and one for resetting the data), and 1 client. The client in this case can be viewed in a browser using html and javascript. The main page of the webpage displays some initial data on test results by ethnicity. There are also several tabs at the top of the page, where the user can view more information about the project, add their own recruitment data, or login to their personal account. The scale of the project is broadended to many interpretations of the SBPD ethnicity data, so the user can view the data based on different variables and analyze trends that are revealed by this layout.
+
