@@ -10,78 +10,77 @@ function getFormInfo(){
     // get ethnicity
     if (document.getElementById('american-indian').checked){
         ethnicity = document.getElementById("american-indian").value;
-    }
-
-    if (document.getElementById('asian').checked){
+    } else if (document.getElementById('asian').checked){
         ethnicity = document.getElementById("asian").value;
-    }
-
-    if (document.getElementById('black').checked){
+    } else if (document.getElementById('black').checked){
         ethnicity = document.getElementById("black").value;
-    }
-
-    if (document.getElementById('hispanic-latino').checked){
+    } else if (document.getElementById('hispanic-latino').checked){
         ethnicity = document.getElementById("hispanic-latino").value;
-    }
-
-    if (document.getElementById('native-hawaiian').checked){
+    } else if (document.getElementById('native-hawaiian').checked){
         ethnicity = document.getElementById("native-hawaiian").value;
-    }
-
-    if (document.getElementById('white').checked){
+    } else if (document.getElementById('white').checked){
         ethnicity = document.getElementById("white").value;
-    }
-
-    if (document.getElementById('other').checked){
+    } else if (document.getElementById('other').checked){
         ethnicity = document.getElementById("other").value;
     }
-
-    console.log("Ethnicity: " + ethnicity);
 
     // get whether or not user submitted application
     var submitted;
     if (document.getElementById('yes').checked){
         submitted = document.getElementById("yes").value;
-    }
-
-    if (document.getElementById('no').checked){
+    } else if (document.getElementById('no').checked){
         submitted = document.getElementById("no").value;
     }
 
-    console.log("Application Submitted: " + submitted);
-
-    // get tests passed
-    var tests = [];
+    // get tests taken
+    var taken = [];
     if (document.getElementById('physical').checked){
-        tests.push(document.getElementById("physical").value);
+        taken.push(document.getElementById("physical-take").value);
     }
 
     if (document.getElementById('written').checked){
-        tests.push(document.getElementById("written").value);
+        taken.push(document.getElementById("written-take").value);
     }
 
     if (document.getElementById('personal').checked){
-        tests.push(document.getElementById("personal").value);
+        taken.push(document.getElementById("personal-take").value);
     }
 
     if (document.getElementById('interview').checked){
-        tests.push(document.getElementById("interview").value);
+        taken.push(document.getElementById("interview-take").value);
     }
 
-    if (document.getElementById('polygraph').checked){
-        tests.push(document.getElementById("polygraph").value);
+    console.log("Tests taken: " + taken);
+
+    // get tests passed
+    var passed = [];
+    if (document.getElementById('physical').checked){
+        passed.push(document.getElementById("physical-passed").value);
     }
 
-    console.log("Tests passed: " + tests);
+    if (document.getElementById('written').checked){
+        passed.push(document.getElementById("written-passed").value);
+    }
+
+    if (document.getElementById('personal').checked){
+        passed.push(document.getElementById("personal-passed").value);
+    }
+
+    if (document.getElementById('interview').checked){
+        passed.push(document.getElementById("interview-passed").value);
+    }
+
+    console.log("Tests passed: " + passed);
 
     // make dictionary
     data = {};
     data['ethnicity'] = ethnicity;
     data['submitted'] = submitted;
-    data['tests'] = tests;
+    data['taken'] = taken;
+    data['passed'] = passed;
 
     console.log(data)
-    displayData(data);
+    //displayData(data);
 }
 
 function displayData(data){
