@@ -34,19 +34,19 @@ function getFormInfo(){
 
     // get tests taken
     var taken = [];
-    if (document.getElementById('physical').checked){
+    if (document.getElementById('physical-take').checked){
         taken.push(document.getElementById("physical-take").value);
     }
 
-    if (document.getElementById('written').checked){
+    if (document.getElementById('written-take').checked){
         taken.push(document.getElementById("written-take").value);
     }
 
-    if (document.getElementById('personal').checked){
+    if (document.getElementById('personal-take').checked){
         taken.push(document.getElementById("personal-take").value);
     }
 
-    if (document.getElementById('interview').checked){
+    if (document.getElementById('interview-take').checked){
         taken.push(document.getElementById("interview-take").value);
     }
 
@@ -54,19 +54,19 @@ function getFormInfo(){
 
     // get tests passed
     var passed = [];
-    if (document.getElementById('physical').checked){
+    if (document.getElementById('physical-passed').checked){
         passed.push(document.getElementById("physical-passed").value);
     }
 
-    if (document.getElementById('written').checked){
+    if (document.getElementById('written-passed').checked){
         passed.push(document.getElementById("written-passed").value);
     }
 
-    if (document.getElementById('personal').checked){
+    if (document.getElementById('personal-passed').checked){
         passed.push(document.getElementById("personal-passed").value);
     }
 
-    if (document.getElementById('interview').checked){
+    if (document.getElementById('interview-passed').checked){
         passed.push(document.getElementById("interview-passed").value);
     }
 
