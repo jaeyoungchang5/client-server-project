@@ -3,14 +3,13 @@ console.log("entered script");
 var hostUrl = "http://student04.cse.nd.edu";
 var portNumber = 51047;
 var requestType = "GET";
-var ethnicity = "Black"; //document.getElementById('ethnicity-options').value;
 var testTableButton = document.getElementById('test-table-button');
 testTableButton.onmouseup = getFormInfo;
 var ethnicityTableButton = document.getElementById('ethnicity-table-button');
 ethnicityTableButton.onmouseup = getFormInfo;
 
 function getFormInfo() {
-    ethnicity = document.getElementById('ethnicity-options').value;
+    var ethnicity = document.getElementById('ethnicity-options').value;
     makeNetworkCalltoServer(hostUrl, portNumber, requestType, ethnicity);
 }
 
@@ -25,7 +24,8 @@ function handleRequest(hostUrl, portNumber, requestType, ethnicity) {
     var xhr = new XMLHttpRequest();
     console.log("created XMLHttpRequest");
     
-    xhr.open(requestType, hostUrl + ":" + portNumber + "/tests/" + ethnicity, true);
+    xhr.open(requestType, hostUrl + ":" + portNumber + "/tests/Black", true);
+    //xhr.open(requestType, hostUrl + ":" + portNumber + "/tests/" + ethnicity, true);
     console.log("opened xhr");
 
     xhr.onload = function(e){
