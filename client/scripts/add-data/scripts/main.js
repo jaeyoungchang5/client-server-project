@@ -10,6 +10,7 @@ submitButton.onmouseup = getFormInfo;
 function getFormInfo(){
     console.log("get form info");
     var ethnicity;
+    var json_data = {}
 
     // get ethnicity
     if (document.getElementById('american-indian').checked){
@@ -29,29 +30,34 @@ function getFormInfo(){
     }
 
     // get whether or not user submitted application
-    var submitted;
+    var hired;
     if (document.getElementById('yes').checked){
-        submitted = document.getElementById("yes").value;
+        hired = document.getElementById("yes").value;
+        json_data['Passed_Polygraph__Medical__Psyc'] = true;
     } else if (document.getElementById('no').checked){
-        submitted = document.getElementById("no").value;
+        hired = document.getElementById("no").value;
     }
 
     // get tests taken
     var taken = [];
     if (document.getElementById('physical-take').checked){
-        taken.push(document.getElementById("physical-take").value);
+        taken.push("Physical");
+        json_data[document.getElementById("physical-take").value] = true;
     }
 
     if (document.getElementById('written-take').checked){
-        taken.push(document.getElementById("written-take").value);
+        taken.push("Written");
+        json_data[document.getElementById("written-take").value] = true;
     }
 
     if (document.getElementById('personal-take').checked){
-        taken.push(document.getElementById("personal-take").value);
+        taken.push("Personal");
+        json_data[document.getElementById("personal-take").value] = true;
     }
 
     if (document.getElementById('interview-take').checked){
-        taken.push(document.getElementById("interview-take").value);
+        taken.push("Interview");
+        json_data[document.getElementById("interview-take").value] = true;
     }
 
     console.log("Tests taken: " + taken);
@@ -59,21 +65,23 @@ function getFormInfo(){
     // get tests passed
     var passed = [];
     if (document.getElementById('physical-pass').checked){
-        console.log("HERE")
-        console.log(document.getElementById("physical-pass").value)
-        passed.push(document.getElementById("physical-pass").value);
+        passed.push("Physical");
+        json_data[document.getElementById("physical-pass").value] = true;
     }
 
     if (document.getElementById('written-pass').checked){
-        passed.push(document.getElementById("written-pass").value);
+        passed.push("Written");
+        json_data[document.getElementById("written-pass").value] = true;
     }
 
     if (document.getElementById('personal-pass').checked){
-        passed.push(document.getElementById("personal-pass").value);
+        passed.push("Personal");
+        json_data[document.getElementById("personal-pass").value] = true;
     }
 
     if (document.getElementById('interview-pass').checked){
-        passed.push(document.getElementById("interview-pass").value);
+        passed.push("Interview");
+        json_data[document.getElementById("interview-pass").value] = true;
     }
 
     console.log("Tests passed: " + passed);
@@ -81,33 +89,71 @@ function getFormInfo(){
     // make dictionary
     data = {};
     data['ethnicity'] = ethnicity;
-    data['submitted'] = submitted;
+    data['hired'] = hired;
     data['taken'] = taken;
     data['passed'] = passed;
 
-    console.log(data)
     displayData(data);
+    makeNetworkCalltoServer(hostUrl, portNumber, requestType, '/results/' + ethnicity, json_data);
 }
 
 function displayData(data){
     console.log('entered data!');
-    console.log(data);
 
     // get fields from story and display in label.
-    var page_top = document.getElementById('story-top-line');
+    var page_top = document.getElementById('data-to-be-added');
     page_top.innerHTML = 'Data to be Added';
     
     var the_data = "";
 
-    the_data += "Ethnicity: " + data['ethnicity'] + "<br>";
+    the_data += "Ethnicity: <br>" + data['ethnicity'] + "<br>";
 
-    the_data += "<br>Submitted Application: " + data['submitted'];
+    the_data += "<br>Hired: <br>" + data['hired'];
     
-    the_data += "<br>Tests Passed: ";
-    for (test in data['tests']) {
-        the_data += data['tests'][test] + " ";
+    the_data += "<br><br>Tests Taken: <br>";
+
+    for (test in data['taken']) {
+        the_data += data['taken'][test] + ", ";
+    }
+
+    the_data += "<br><br>Tests Passed: <br>";
+
+    for (test in data['passed']) {
+        the_data += data['passed'][test] + ", ";
     }
 
     var story_body = document.getElementById('story-body');
     story_body.innerHTML = the_data;
+}
+
+function makeNetworkCalltoServer(hostUrl, portNumber, requestType, endpoint, json_data) {
+    console.log("made network call to server");
+    handleRequest(hostUrl, portNumber, requestType, endpoint, json_data);
+}
+
+function handleRequest(hostUrl, portNumber, requestType, endpoint, json_data){
+    console.log("handling request");
+    console.log(json_data)
+
+    var xhr = new XMLHttpRequest();
+    console.log("created XMLHttpRequest");
+    
+    xhr.open(requestType, hostUrl + ":" + portNumber + endpoint, true);
+    console.log("opened xhr");
+
+    xhr.onload = function(e){
+        console.log("entered onload");
+        console.log(xhr.responseText);
+        if(requestType == 'PUT'){
+            console.log("put request -- here");
+            
+        }
+    }
+
+    xhr.onerror = function(e){
+        console.log("enter onerror");
+        console.error(xhr.statusText);
+    }
+
+    xhr.send(json_data);
 }

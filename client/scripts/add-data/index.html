@@ -40,10 +40,6 @@
 
         <!-- Div align in the middle -->
         <div style="margin-left:auto;margin-right:auto;text-align:center">
-            <div class="container">
-                <p class="lead" id="story-top-line"></p>
-                <p id="story-body"></p>
-            </div>
 
             <div class='jumbotron' style='background:#6aa84f'>
                 <h1 style='color:#000000;' class='jumbotronic'>Add Your Own Data</h1>
@@ -67,26 +63,28 @@
                 </div>
 
                 <div class='form-group'><label for='checkboxes'>Which tests did you take?</label>
-                    <div class='checkbox' id='physical-take'><label><input type='checkbox' value='Took_Physical_Test'>Physical</label></div>
-                    <div class='checkbox' id='written-take'><label><input type='checkbox' value='Completed_Written_Test'>Written</label></div>
-                    <div class='checkbox' id='personal-take'><label><input type='checkbox' value='Completed_Personal'>Personal</label></div>
-                    <div class='checkbox' id='interview-take'><label><input type='checkbox' value='Completed_Interview'>Interview</label></div>
+                    <div class='checkbox'><label><input id='physical-take' type='checkbox' value='Took_Physical_Test'>Physical</label></div>
+                    <div class='checkbox'><label><input id='written-take' type='checkbox' value='Completed_Written_Test'>Written</label></div>
+                    <div class='checkbox'><label><input id='personal-take' type='checkbox' value='Completed_Personal'>Personal</label></div>
+                    <div class='checkbox'><label><input id='interview-take' type='checkbox' value='Completed_Interview'>Interview</label></div>
                 </div>
 
                 <div class='form-group'><label for='checkboxes'>Which tests did you pass?</label>
-                    <div class='checkbox' id='physical-pass'><label><input type='checkbox' value='Passed_Physical_Test'>Physical</label></div>
-                    <div class='checkbox' id='written-pass'><label><input type='checkbox' value='Passed_Written_Test'>Written</label></div>
-                    <div class='checkbox' id='personal-pass'><label><input type='checkbox' value='Passed_Personal'>Personal</label></div>
-                    <div class='checkbox' id='interview-pass'><label><input type='checkbox' value='Passed_Interview'>Interview</label></div>
+                    <div class='checkbox'><label><input id='physical-pass' type='checkbox' value='Passed_Physical_Test'>Physical</label></div>
+                    <div class='checkbox'><label><input id='written-pass' type='checkbox' value='Passed_Written_Test'>Written</label></div>
+                    <div class='checkbox'><label><input id='personal-pass' type='checkbox' value='Passed_Personal'>Personal</label></div>
+                    <div class='checkbox'><label><input id='interview-pass' type='checkbox' value='Passed_Interview'>Interview</label></div>
                 </div>
             </form>
             
             <button type="submit" class="btn btn-primary btn-sm" id="add-data-button">Add Your Data</button>
-            <!-- <p class='text-center'>
-                <button type="button">
-                    <a role='button' class='btn btn-info'>Submit</a>
-                </button>
-            </p> -->
+
+            <br>
+            <br>
+            <div class="container">
+                <p class="lead" id="data-to-be-added"></p>
+                <p id="story-body"></p>
+            </div>
         
         </div>
     </div>
