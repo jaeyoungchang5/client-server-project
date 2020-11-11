@@ -1,5 +1,9 @@
 console.log("Page loaded");
 
+var hostUrl = "http://student04.cse.nd.edu";
+var portNumber = 51047;
+var requestType = "PUT";
+
 var submitButton = document.getElementById('add-data-button')
 submitButton.onmouseup = getFormInfo;
 
@@ -55,6 +59,7 @@ function getFormInfo(){
     // get tests passed
     var passed = [];
     if (document.getElementById('physical-pass').checked){
+        console.log("HERE")
         console.log(document.getElementById("physical-pass").value)
         passed.push(document.getElementById("physical-pass").value);
     }
@@ -81,7 +86,7 @@ function getFormInfo(){
     data['passed'] = passed;
 
     console.log(data)
-    //displayData(data);
+    displayData(data);
 }
 
 function displayData(data){
