@@ -20,7 +20,7 @@ deleteButton.onmouseup = function(){
 
 function getFormInfo(requestType) {
     console.log("get form info");
-    var endpoint = "/user/";
+    var endpoint = "/user/all";
 
     var data = {}
     if (requestType == "GET"){
