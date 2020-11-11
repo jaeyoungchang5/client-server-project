@@ -93,11 +93,13 @@ function updateTable2(response_text){
     var response_json = JSON.parse(response_text);
     console.log('response: ' + response_json);
 
-    // document.getElementById('physical-passed').innerHTML = response_json['Passed_Physical_Test'];
-    // document.getElementById('written-passed').innerHTML = response_json['Passed_Written_Test'];
-    // document.getElementById('personal-passed').innerHTML = response_json['Passed_Personal'];
-    // document.getElementById('interview-passed').innerHTML = response_json['Passed_Interview'];
-    // document.getElementById('polygraph-passed').innerHTML = response_json['Passed_Polygraph__Medical__Psyc'];
+    document.getElementById('ai-passed').innerHTML = response_json['American-Indian'];
+    document.getElementById('a-passed').innerHTML = response_json['Asian'];
+    document.getElementById('b-passed').innerHTML = response_json['Black'];
+    document.getElementById('hl-passed').innerHTML = response_json['Latino'];
+    document.getElementById('nh-passed').innerHTML = response_json['Hawaiian'];
+    document.getElementById('two-passed').innerHTML = response_json['Multiple'];
+    document.getElementById('w-passed').innerHTML = response_json['White'];
 }
 
 function updateTable3(response_text){
@@ -106,11 +108,11 @@ function updateTable3(response_text){
     var response_json = JSON.parse(response_text);
     console.log('response: ' + response_json);
 
-    // document.getElementById('physical-passed').innerHTML = response_json['Passed_Physical_Test'];
-    // document.getElementById('written-passed').innerHTML = response_json['Passed_Written_Test'];
-    // document.getElementById('personal-passed').innerHTML = response_json['Passed_Personal'];
-    // document.getElementById('interview-passed').innerHTML = response_json['Passed_Interview'];
-    // document.getElementById('polygraph-passed').innerHTML = response_json['Passed_Polygraph__Medical__Psyc'];
+    document.getElementById('p-physical').innerHTML = response_json['Passed_Physical_Test'];
+    document.getElementById('p-written').innerHTML = response_json['Passed_Written_Test'];
+    document.getElementById('p-personal').innerHTML = response_json['Passed_Personal'];
+    document.getElementById('p-interview').innerHTML = response_json['Passed_Interview'];
+    document.getElementById('p-polygraph').innerHTML = response_json['Passed_Polygraph__Medical__Psyc'];
 }
 
 function updateTable4(response_text){
@@ -119,9 +121,11 @@ function updateTable4(response_text){
     var response_json = JSON.parse(response_text);
     console.log('response: ' + response_json);
 
-    // document.getElementById('physical-passed').innerHTML = response_json['Passed_Physical_Test'];
-    // document.getElementById('written-passed').innerHTML = response_json['Passed_Written_Test'];
-    // document.getElementById('personal-passed').innerHTML = response_json['Passed_Personal'];
-    // document.getElementById('interview-passed').innerHTML = response_json['Passed_Interview'];
-    // document.getElementById('polygraph-passed').innerHTML = response_json['Passed_Polygraph__Medical__Psyc'];
+    document.getElementById('ai-total-applicants').innerHTML = response_json['American-Indian'];
+    document.getElementById('a-total-applicants').innerHTML = response_json['Asian'];
+    document.getElementById('b-total-applicants').innerHTML = response_json['Black'];
+    document.getElementById('hl-total-applicants').innerHTML = response_json['Latino'];
+    document.getElementById('nh-total-applicants').innerHTML = response_json['Hawaiian'];
+    document.getElementById('two-total-applicants').innerHTML = response_json['Multiple'];
+    document.getElementById('w-total-applicants').innerHTML = response_json['White'];
 }
