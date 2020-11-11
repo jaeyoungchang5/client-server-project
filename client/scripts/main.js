@@ -85,6 +85,12 @@ function updateTable1(response_text){
     document.getElementById('personal-passed').innerHTML = response_json['Passed_Personal'];
     document.getElementById('interview-passed').innerHTML = response_json['Passed_Interview'];
     document.getElementById('polygraph-passed').innerHTML = response_json['Passed_Polygraph__Medical__Psyc'];
+
+    document.getElementById('physical-applicants').innerHTML = response_json['Took_Physical_Test'];
+    document.getElementById('written-applicants').innerHTML = response_json['Completed_Written_Test'];
+    document.getElementById('personal-applicants').innerHTML = response_json['Completed_Personal'];
+    document.getElementById('interview-applicants').innerHTML = response_json['Completed_Interview'];
+    document.getElementById('polygraph-applicants').innerHTML = response_json['Submitted_Application'];
 }
 
 function updateTable2(response_text){
