@@ -54,20 +54,20 @@ function getFormInfo(){
 
     // get tests passed
     var passed = [];
-    if (document.getElementById('physical-passed').checked){
-        passed.push(document.getElementById("physical-passed").value);
+    if (document.getElementById('physical-pass').checked){
+        passed.push(document.getElementById("physical-pass").value);
     }
 
-    if (document.getElementById('written-passed').checked){
-        passed.push(document.getElementById("written-passed").value);
+    if (document.getElementById('written-pass').checked){
+        passed.push(document.getElementById("written-pass").value);
     }
 
-    if (document.getElementById('personal-passed').checked){
-        passed.push(document.getElementById("personal-passed").value);
+    if (document.getElementById('personal-pass').checked){
+        passed.push(document.getElementById("personal-pass").value);
     }
 
-    if (document.getElementById('interview-passed').checked){
-        passed.push(document.getElementById("interview-passed").value);
+    if (document.getElementById('interview-pass').checked){
+        passed.push(document.getElementById("interview-pass").value);
     }
 
     console.log("Tests passed: " + passed);
