@@ -3,7 +3,7 @@ console.log("entered script");
 var hostUrl = "http://student04.cse.nd.edu";
 var portNumber = 51047;
 var requestType = "GET";
-var ethnicity = document.getElementById('ethnicity-options').value;
+var ethnicity = "Black"; //document.getElementById('ethnicity-options').value;
 var testTableButton = document.getElementById('test-table-button');
 testTableButton.onmouseup = getFormInfo;
 var ethnicityTableButton = document.getElementById('ethnicity-table-button');
