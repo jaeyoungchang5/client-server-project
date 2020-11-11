@@ -9,24 +9,34 @@ var testTableButton = document.getElementById('test-table-button');
 testTableButton.onmouseup = function(){
     console.log('TABLE 1: button clicked');
     var endpoint = '/tests/' + document.getElementById('ethnicity-options').value;
-    getTestInfo(endpoint)
+    getInfo(endpoint, 1);
 };
 
 // Table 2: Ethnicity ('/ethnicities/:test')
 var ethnicityTableButton = document.getElementById('ethnicity-table-button');
-ethnicityTableButton.onmouseup = getFormInfo;
+ethnicityTableButton.onmouseup = function(){
+    console.log('TABLE 2: button clicked');
+    var endpoint = '/ethnicities/' + document.getElementById('test-options').value;
+    getInfo(endpoint, 2);
+};
 
-function getTestInfo(endpoint) {
+// Table 3: Tests
+getInfo('/tests/', 3);
+
+// Table 4: Ethnicities
+getInfo('/ethnicities/', 4);
+
+function getInfo(endpoint, tableNum) {
     console.log('getting info for endpoint: ' + endpoint);
-    makeNetworkCalltoServer(hostUrl, portNumber, requestType, endpoint);
+    makeNetworkCalltoServer(hostUrl, portNumber, requestType, endpoint, tableNum);
 }
 
-function makeNetworkCalltoServer(hostUrl, portNumber, requestType, endpoint) {
+function makeNetworkCalltoServer(hostUrl, portNumber, requestType, endpoint, tableNum) {
     console.log("made network call to server");
-    handleRequest(hostUrl, portNumber, requestType, endpoint);
+    handleRequest(hostUrl, portNumber, requestType, endpoint, tableNum);
 }
 
-function handleRequest(hostUrl, portNumber, requestType, endpoint) {
+function handleRequest(hostUrl, portNumber, requestType, endpoint, tableNum) {
     console.log("handling request");
 
     var xhr = new XMLHttpRequest();
@@ -39,8 +49,18 @@ function handleRequest(hostUrl, portNumber, requestType, endpoint) {
         console.log("entered onload");
         console.log(xhr.responseText);
         if(requestType == 'GET'){
-            console.log("update page for get")
-            updatePageForGet(xhr.responseText);
+            console.log("update page for get");
+
+            if (tableNum == 1){
+                updateTable1(xhr.responseText);
+            } else if (tableNum == 2){
+                updateTable2(xhr.responseText);
+            } else if (tableNum == 3){
+                updateTable3(xhr.responseText);
+            } else if (tableNum == 4){
+                updateTable4(xhr.responseText);
+            }
+            
         }
     }
 
@@ -54,19 +74,54 @@ function handleRequest(hostUrl, portNumber, requestType, endpoint) {
 
 }
 
-function updatePageForGet(response_text){
+function updateTable1(response_text){
     console.log('updating page for get');
 
     var response_json = JSON.parse(response_text);
-    console.log(response_json);
+    console.log('response: ' + response_json);
 
     document.getElementById('physical-passed').innerHTML = response_json['Passed_Physical_Test'];
     document.getElementById('written-passed').innerHTML = response_json['Passed_Written_Test'];
     document.getElementById('personal-passed').innerHTML = response_json['Passed_Personal'];
     document.getElementById('interview-passed').innerHTML = response_json['Passed_Interview'];
     document.getElementById('polygraph-passed').innerHTML = response_json['Passed_Polygraph__Medical__Psyc'];
-
-    console.log(response_json['Passed_Written_Test']);
-    console.log(response_json['Passed_Interview']);
 }
 
+function updateTable2(response_text){
+    console.log('updating page for get');
+
+    var response_json = JSON.parse(response_text);
+    console.log('response: ' + response_json);
+
+    // document.getElementById('physical-passed').innerHTML = response_json['Passed_Physical_Test'];
+    // document.getElementById('written-passed').innerHTML = response_json['Passed_Written_Test'];
+    // document.getElementById('personal-passed').innerHTML = response_json['Passed_Personal'];
+    // document.getElementById('interview-passed').innerHTML = response_json['Passed_Interview'];
+    // document.getElementById('polygraph-passed').innerHTML = response_json['Passed_Polygraph__Medical__Psyc'];
+}
+
+function updateTable3(response_text){
+    console.log('updating page for get');
+
+    var response_json = JSON.parse(response_text);
+    console.log('response: ' + response_json);
+
+    // document.getElementById('physical-passed').innerHTML = response_json['Passed_Physical_Test'];
+    // document.getElementById('written-passed').innerHTML = response_json['Passed_Written_Test'];
+    // document.getElementById('personal-passed').innerHTML = response_json['Passed_Personal'];
+    // document.getElementById('interview-passed').innerHTML = response_json['Passed_Interview'];
+    // document.getElementById('polygraph-passed').innerHTML = response_json['Passed_Polygraph__Medical__Psyc'];
+}
+
+function updateTable4(response_text){
+    console.log('updating page for get');
+
+    var response_json = JSON.parse(response_text);
+    console.log('response: ' + response_json);
+
+    // document.getElementById('physical-passed').innerHTML = response_json['Passed_Physical_Test'];
+    // document.getElementById('written-passed').innerHTML = response_json['Passed_Written_Test'];
+    // document.getElementById('personal-passed').innerHTML = response_json['Passed_Personal'];
+    // document.getElementById('interview-passed').innerHTML = response_json['Passed_Interview'];
+    // document.getElementById('polygraph-passed').innerHTML = response_json['Passed_Polygraph__Medical__Psyc'];
+}
