@@ -103,7 +103,7 @@ function displayData(data){
         the_data += data['tests'][test] + " ";
     }
 
-    console.log(the_data;
+    console.log(the_data);
     var story_body = document.getElementById('story-body');
     story_body.innerHTML = the_data;
 }
