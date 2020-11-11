@@ -3,24 +3,9 @@ console.log("entered script");
 var hostUrl = "http://student04.cse.nd.edu";
 var portNumber = 51047;
 var requestType = "GET";
-var ethnicity = "White"; //document.getElementById('ethnicity-options').value;
+var ethnicity = document.getElementById('ethnicity-options').value;
 
-var xhr = new XMLHttpRequest();
-xhr.open("GET", "http://student04.cse.nd.edu:51047/tests/", true);
-
-xhr.onload = function(e){
-    console.log("loading");
-    console.log(xhr.responseText);
-}
-
-xhr.onerror = function(e){
-    console.log("error");
-    console.error(xhr.statusText);
-}
-
-xhr.send(null);
-
-//makeNetworkCalltoServer(hostUrl, portNumber, requestType, ethnicity);
+makeNetworkCalltoServer(hostUrl, portNumber, requestType, ethnicity);
 
 function makeNetworkCalltoServer(hostUrl, portNumber, requestType, ethnicity) {
     console.log("make network call to server");
