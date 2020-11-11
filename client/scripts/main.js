@@ -76,7 +76,7 @@ function handleRequest(hostUrl, portNumber, requestType, endpoint, tableNum) {
 
 function percentage(top, bottom) {
     if (bottom == 0){
-        return "0%";
+        return "0.0%";
     }
 
     return ((top/bottom)*100).toFixed(1) + "%";
@@ -122,11 +122,17 @@ function updateTable3(response_text){
     var response_json = JSON.parse(response_text);
     console.log('response: ' + response_json);
 
-    document.getElementById('p-physical').innerHTML = response_json['Passed_Physical_Test'];
-    document.getElementById('p-written').innerHTML = response_json['Passed_Written_Test'];
-    document.getElementById('p-personal').innerHTML = response_json['Passed_Personal'];
-    document.getElementById('p-interview').innerHTML = response_json['Passed_Interview'];
-    document.getElementById('p-polygraph').innerHTML = response_json['Passed_Polygraph__Medical__Psyc'];
+    document.getElementById('p-physical').innerHTML = percentage(response_json['Passed_Physical_Test'], response_json['Took_Physical_Test']);
+    document.getElementById('p-written').innerHTML = percentage(response_json['Passed_Written_Test'], response_json['Completed_Written_Test']);
+    document.getElementById('p-personal').innerHTML = percentage(response_json['Passed_Personal'], response_json['Completed_Personal']);
+    document.getElementById('p-interview').innerHTML = percentage(response_json['Passed_Interview'], response_json['Completed_Interview']);
+    document.getElementById('p-polygraph').innerHTML = percentage(response_json['Passed_Polygraph__Medical__Psyc'], response_json['Submitted_Application']);
+
+    document.getElementById('p-physical-applicants').innerHTML = response_json['Took_Physical_Test'];
+    document.getElementById('p-written-applicants').innerHTML = response_json['Completed_Written_Test'];
+    document.getElementById('p-personal-applicants').innerHTML = response_json['Completed_Personal'];
+    document.getElementById('p-interview-applicants').innerHTML = response_json['Completed_Interview'];
+    document.getElementById('p-polygraph-applicants').innerHTML = response_json['Submitted_Application'];
 }
 
 function updateTable4(response_text){
