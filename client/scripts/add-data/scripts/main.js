@@ -155,5 +155,5 @@ function handleRequest(hostUrl, portNumber, requestType, endpoint, json_data){
         console.error(xhr.statusText);
     }
 
-    xhr.send(json_data);
+    xhr.send(JSON.stringify(json_data));
 }
