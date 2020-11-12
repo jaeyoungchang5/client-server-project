@@ -101,7 +101,7 @@ function updateGET(response_text, data){
     } else {
         // no user exists
         console.log("no match")
-        alert("No username found. Please enter your infromation.");
+        alert("No username found. Please enter your information.");
         document.getElementById("head-username").innerHTML = "";
         document.getElementById("login").style.display = "none";
         document.getElementById("signup").style.display = "inline";
