@@ -102,7 +102,7 @@ function displayData(data){
 
     // get fields from story and display in label.
     var page_top = document.getElementById('data-to-be-added');
-    page_top.innerHTML = 'Data to be Added';
+    page_top.innerHTML = 'Data Added';
     
     var the_data = "";
 
